@@ -1,0 +1,12 @@
+hash: d7801d231092d7d5e60441855e02827a7aa2c6027ff2e3ae0b48fa97bf63ee91
+updated: 2018-03-08T13:51:39.466488+07:00
+imports:
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/stianeikeland/go-rpio
+  version: a6b0dffd47b6b1ddf7f1bfe2144f05bf335e911d
+- name: github.com/technoweenie/multipartstreamer
+  version: a90a01d73ae432e2611d178c18367fbaa13e0154
+- name: gopkg.in/telegram-bot-api.v4
+  version: 2022d04b94f50056a09962b1ac81cdd821d20a55
+testImports: []

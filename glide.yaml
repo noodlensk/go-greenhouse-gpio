@@ -1,0 +1,8 @@
+package: github.com/noodlensk/go-greenhouse-gpio
+import:
+- package: github.com/stianeikeland/go-rpio
+  version: ^4.0.0
+- package: gopkg.in/telegram-bot-api.v4
+  version: ^4.6.1
+- package: github.com/technoweenie/multipartstreamer
+  version: ^1.0.1
