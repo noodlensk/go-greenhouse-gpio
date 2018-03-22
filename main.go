@@ -99,21 +99,34 @@ func run() error {
 	}
 	c := cron.New()
 	for _, r := range myReleBoard {
+		r := r // hack to avoid issue
 		if r.SwitchOnAt != "" {
-			time := strings.Split(r.SwitchOnAt, ":")
-			hour, err := strconv.ParseInt(time[0], 10, 64)
+			log.Printf("schedule switch on at %s for rele %s\n", r.SwitchOnAt, r.Name)
+			hour, minute, err := parseTime(r.SwitchOnAt)
 			if err != nil {
-				return errors.Wrapf(err, "failed to read SwitchOnAt for %s", r.Name)
-			}
-			minute, err := strconv.ParseInt(time[1], 10, 64)
-			if err != nil {
-				return errors.Wrapf(err, "failed to read SwitchOnAt for %s", r.Name)
+				return errors.Wrapf(err, "failed to parse time %s", r.SwitchOnAt)
 			}
 			if err := c.AddFunc(
 				fmt.Sprintf("0 %d %d * * *", minute, hour),
 				func() {
 					r.SwitchOn()
-					log.Printf("Running cron job \n")
+					log.Printf("Cron: switch on rele %s at %s\n", r.Name, r.SwitchOnAt)
+				},
+			); err != nil {
+				return errors.Wrapf(err, "failed to setup cron job for %s", r.Name)
+			}
+		}
+		if r.SwitchOffAt != "" {
+			log.Printf("schedule switch off at %s for rele %s\n", r.SwitchOffAt, r.Name)
+			hour, minute, err := parseTime(r.SwitchOffAt)
+			if err != nil {
+				return errors.Wrapf(err, "failed to parse time %s", r.SwitchOffAt)
+			}
+			if err := c.AddFunc(
+				fmt.Sprintf("0 %d %d * * *", minute, hour),
+				func() {
+					r.SwitchOff()
+					log.Printf("Cron: switch off rele %s at %s\n", r.Name, r.SwitchOffAt)
 				},
 			); err != nil {
 				return errors.Wrapf(err, "failed to setup cron job for %s", r.Name)
@@ -121,13 +134,12 @@ func run() error {
 		}
 	}
 	c.Start()
-
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TELEGRAM_BOT_TOKEN"))
 	if err != nil {
 		return errors.Wrap(err, "failed to init telegram bot API")
 	}
 
-	bot.Debug = true
+	bot.Debug = false
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
@@ -189,4 +201,18 @@ func setupRpio() error {
 	}
 
 	return nil
+}
+
+// parse string "05:23" as hour = 5, minute = 23
+func parseTime(s string) (hour, minute int64, err error) {
+	time := strings.Split(s, ":")
+	hour, err = strconv.ParseInt(time[0], 10, 64)
+	if err != nil {
+		return
+	}
+	minute, err = strconv.ParseInt(time[1], 10, 64)
+	if err != nil {
+		return
+	}
+	return
 }
