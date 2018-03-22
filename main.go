@@ -30,11 +30,17 @@ type Rele struct {
 // ReleBoard is set of Rele
 type ReleBoard []*Rele
 
+// Config represents main config for app
+type Config struct {
+	ReleBoard    ReleBoard
+	AllowedUsers []string
+}
+
 // Toggle rele state
 func (r *Rele) Toggle() {
 	pin := rpio.Pin(r.Pin)
 	pin.Toggle()
-	log.Printf("state: %+v", pin.Read())
+	log.Printf("%s: state: %+v", r.Name, pin.Read())
 	if pin.Read() == rpio.High {
 		r.On = false
 	} else {
@@ -65,9 +71,8 @@ func (r *Rele) SwitchOff() {
 }
 
 var myReleBoard ReleBoard
-var config struct {
-	ReleBoard ReleBoard
-}
+
+var config Config
 
 func main() {
 	if err := run(); err != nil {
@@ -154,7 +159,15 @@ func run() error {
 		}
 
 		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
-
+		isAllowed := false
+		for _, user := range config.AllowedUsers {
+			if user == update.Message.From.UserName {
+				isAllowed = true
+			}
+		}
+		if !isAllowed {
+			continue
+		}
 		if update.Message.IsCommand() {
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
 			switch update.Message.Command() {

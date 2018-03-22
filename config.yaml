@@ -8,5 +8,6 @@ releBoard:
     - name: Rele 4
       pin: 23
       switchOnAt: "06:00"
-      switchOffAt: "24:00"
-    
+      switchOffAt: "23:00"
+allowedUsers:
+  - noodlensk
