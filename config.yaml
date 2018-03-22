@@ -1,0 +1,12 @@
+releBoard:
+    - name: Rele 1
+      pin: 15
+    - name: Rele 2
+      pin: 14
+    - name: Rele 3
+      pin: 18
+    - name: Rele 4
+      pin: 23
+      switchOnAt: "06:00"
+      switchOffAt: "24:00"
+    

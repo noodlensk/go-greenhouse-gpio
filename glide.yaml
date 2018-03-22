@@ -6,3 +6,11 @@ import:
   version: ^4.6.1
 - package: github.com/technoweenie/multipartstreamer
   version: ^1.0.1
+- package: github.com/spf13/pflag
+  version: ^1.0.0
+- package: github.com/spf13/viper
+  version: ^1.0.0
+- package: github.com/fsnotify/fsnotify
+  version: ^1.4.7
+- package: github.com/robfig/cron
+  version: ^1.0.0

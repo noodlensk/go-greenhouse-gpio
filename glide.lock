@@ -1,12 +1,56 @@
-hash: d7801d231092d7d5e60441855e02827a7aa2c6027ff2e3ae0b48fa97bf63ee91
-updated: 2018-03-08T13:51:39.466488+07:00
+hash: 2f5dffc5609a82a6c16b81b475752a10622e096b8eaa606f3f89d63212a7e855
+updated: 2018-03-09T19:01:48.881873+07:00
 imports:
+- name: github.com/fsnotify/fsnotify
+  version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+- name: github.com/hashicorp/hcl
+  version: 23c074d0eceb2b8a5bfdbb271ab780cde70f05a8
+  subpackages:
+  - hcl/ast
+  - hcl/parser
+  - hcl/scanner
+  - hcl/strconv
+  - hcl/token
+  - json/parser
+  - json/scanner
+  - json/token
+- name: github.com/magiconair/properties
+  version: 2c9e9502788518c97fe44e8955cd069417ee89df
+- name: github.com/mitchellh/mapstructure
+  version: 00c29f56e2386353d58c599509e8dc3801b0d716
+- name: github.com/pelletier/go-toml
+  version: 05bcc0fb0d3e60da4b8dd5bd7e0ea563eb4ca943
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/robfig/cron
+  version: b024fc5ea0e34bc3f83d9941c8d60b0622bfaca4
+- name: github.com/spf13/afero
+  version: bbf41cb36dffe15dff5bf7e18c447801e7ffe163
+  subpackages:
+  - mem
+- name: github.com/spf13/cast
+  version: 8965335b8c7107321228e3e3702cab9832751bac
+- name: github.com/spf13/jwalterweatherman
+  version: 7c0cea34c8ece3fbeb2b27ab9b59511d360fb394
+- name: github.com/spf13/pflag
+  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
+- name: github.com/spf13/viper
+  version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
 - name: github.com/stianeikeland/go-rpio
   version: a6b0dffd47b6b1ddf7f1bfe2144f05bf335e911d
 - name: github.com/technoweenie/multipartstreamer
   version: a90a01d73ae432e2611d178c18367fbaa13e0154
+- name: golang.org/x/sys
+  version: 7dca6fe1f43775aa6d1334576870ff63f978f539
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: b7ef84aaf62aa3e70962625c80a571ae7c17cb40
+  subpackages:
+  - transform
+  - unicode/norm
 - name: gopkg.in/telegram-bot-api.v4
   version: 2022d04b94f50056a09962b1ac81cdd821d20a55
+- name: gopkg.in/yaml.v2
+  version: 7f97868eec74b32b0982dd158a51a446d1da7eb5
 testImports: []
